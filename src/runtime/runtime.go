@@ -15,7 +15,7 @@ type Machine interface {
 	ValidateConditions()
 }
 
-var MachineRegistry map[string]Machine
+var MachineRegistry = map[string]Machine{}
 var Bind = ":" + strconv.Itoa(os.Getpid())
 
 func AddMachine(name string, m Machine) {
