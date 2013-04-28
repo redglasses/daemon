@@ -19,6 +19,7 @@ var MachineRegistry map[string]Machine
 var Bind = ":" + strconv.Itoa(os.Getpid())
 
 func AddMachine(name string, m Machine) {
+	m.Init()
 	MachineRegistry[name] = m
 }
 
