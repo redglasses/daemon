@@ -31,7 +31,7 @@ func Validate() {
 }
 
 func Run() {
-	go funx() {
+	go func() {
 		Validate()
 		time.Sleep(100 * time.Millisecond)
 	}()
