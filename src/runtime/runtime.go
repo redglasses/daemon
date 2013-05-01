@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type Condition func() bool
@@ -30,6 +31,10 @@ func Validate() {
 }
 
 func Run() {
+	go funx() {
+		Validate()
+		time.Sleep(100 * time.Millisecond)
+	}()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		component := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 		if m, ok := MachineRegistry[component[0]]; ok {
