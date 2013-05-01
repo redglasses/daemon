@@ -40,7 +40,7 @@ func Run() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		component := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 		if m, ok := MachineRegistry[component[0]]; ok {
-			m.FireEvent(component[0])
+			m.FireEvent(component[1])
 		}
 	})
 	http.ListenAndServe(Bind, nil)
