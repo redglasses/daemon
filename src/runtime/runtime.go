@@ -23,6 +23,12 @@ func AddMachine(name string, m Machine) {
 	MachineRegistry[name] = m
 }
 
+func Validate() {
+	for _, v := range MachineRegistry {
+		v.ValidateConditions()
+	}
+}
+
 func Run() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		component := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
