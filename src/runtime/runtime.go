@@ -32,8 +32,10 @@ func Validate() {
 
 func Run() {
 	go func() {
-		time.Sleep(100 * time.Millisecond)
-		Validate()
+		for {
+			time.Sleep(100 * time.Millisecond)
+			Validate()
+		}
 	}()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		component := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
